@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>       
+	<title>JGCAÇAMBAS - Coleta de Entulho </title>
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+
+	</script>
+	<script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8">
+
+	</script>
+	<script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8">
+
+	</script>
+	<script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js" type="text/javascript" charset="utf-8">
+
+	</script>
+	<script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js" type="text/javascript" charset="utf-8">
+
+	</script>
+
+	<style>
+		html,
+		body {
+			margin: 0;
+			height: 100vh;
+			overflow: hidden;
+		}
+
+		main {
+			height: 94vh;
+			background: yellow;
+		}
+	</style>
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+		    <a class="navbar-brand" href="#">JGCaçambas</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Adicionar Caçamba
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#desvioModal3" data-toggle="modal">Pelas coordenadas</a>
+            </div>
+          </li>       
+        </ul>
+        <div id="select"></div>
+        <form class="form-inline my-2 my-lg-0">
+        </form>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <button type="button" class="btn btn-primary my-2 my-sm-0" href="#loginModal" data-toggle="modal">Login</button>
+          </li>
+        </ul>
+      </div>
+      
+    </nav>
+
+		<div style="width: 100%; height: 100%; position:absolute" class = "map" id = "mapContainer"></div>
+
+
+    <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="Login Modal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="max-width: 400px; padding: 25px; text-align: center;">
+          <div class="modal-header" style="border-bottom: none; position: relative; justify-content: center;">
+            <h4 class="modal-title">Login</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close" style="position: absolute; top: -10px; right: -10px;">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="" method="post">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="email" placeholder="Email">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="password" class="form-control" name="password" placeholder="Senha">
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block btn-lg">Login</button>
+              </div>
+              <p class="hint-text"><a href="#">Esqueceu sua senha?</a></p>
+            </form>
+          </div>
+          <div class="modal-footer" style="justify-content: center;">
+            Não tem uma conta? <a data-dismiss="modal" href="#cadastroModal" data-toggle="modal">&nbsp;Cadastre-se aqui</a>
+          </div>
+        </div>
+      </div>
+    </div>
+		
+		<div id="cadastroModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="Login Modal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="max-width: 400px; padding: 25px; text-align: center;">
+          <div class="modal-header" style="border-bottom: none; position: relative; justify-content: center;">
+            <h4 class="modal-title">Cadastro</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close" style="position: absolute; top: -10px; right: -10px;">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="" method="post">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="email" placeholder="Email">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="password" class="form-control" name="password" placeholder="Senha">
+                </div>
+              </div>
+              <div class="form-group">
+              	<input type="checkbox" name="Termos_de_Uso"> Ao criar uma conta você concorda com nossos termos.
+              </div>
+              <div>
+                <button type="submit" class="btn btn-primary btn-block btn-lg">Cadastrar</button>
+              </div>
+
+              
+              	
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+	
+    <div id="desvioModal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="Desvio Modal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="max-width: 400px; padding: 25px; text-align: center;">
+          <div class="modal-header" style="border-bottom: none; position: relative; justify-content: center;">
+            <h4 class="modal-title">Pelas coordenadas</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close" style="position: absolute; top: -10px; right: -10px;">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="modalAvoidPonto" method="POST">
+              <div class="form-group inline">
+                <input type="number" class="form-control" placeholder="Informe a latitude" id="lat" name = "lat">
+              </div>
+              <div class="form-group inline">
+                <input type="number" class="form-control" placeholder="Informe a longitude" id="long" name = "long">
+              </div>
+              <button type="button" class="btn btn-primary btn-block btn-lg" id="btn-avoid3" data-toggle="modal" onClick = "addReg(),criaLista()">Adicionar area para evitar</button>
+            </form>
+          </div>    
+        </div>
+      </div>
+    </div>
+  <script type="text/javascript" charset="utf-8" src="script.js"></script>
+
+  </body>
+</html>
